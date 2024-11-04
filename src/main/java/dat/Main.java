@@ -13,7 +13,7 @@ import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 
 public class Main {
-    private static final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory("doctor");
+    private static final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory("trip");
 
     public static void main(String[] args) {
         ApplicationConfig.startServer(7070,emf);

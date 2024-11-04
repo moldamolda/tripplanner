@@ -8,15 +8,15 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Routes {
 
-    private final DoctorRoute doctorRoute;
+    private final TripRoutes tripRoutes;
     private final SecurityRoutes authRoute = new SecurityRoutes();
 
     public Routes(EntityManagerFactory emf) {
-        doctorRoute = new DoctorRoute(emf);
+        tripRoutes = new TripRoutes(emf);
     }
     public EndpointGroup getRoutes() {
         return () -> {
-                path("/doctors", doctorRoute.getRoutes());
+            path("/trips", tripRoutes.getRoutes());
                 path("/auth", authRoute.getSecurityRoutes());
 
         };

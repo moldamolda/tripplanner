@@ -1,0 +1,70 @@
+> {%
+client.global.set("jwt_token", response.body.token);
+console.log("JWT Token:", client.global.get("jwt_token"));
+%}
+
+### Get all trips
+GET {{url}}/trips
+Accept: application/json
+
+###
+
+### Get a trip by ID
+GET {{url}}/trips/1
+Accept: application/json
+Authorization: Bearer {{jwt_token}}
+
+
+###
+
+### Create a new trip
+POST {{url}}/trips
+Content-Type: application/json
+
+{
+  "startTime": "2024-05-10T08:30:00",
+  "endTime": "2024-05-10T12:30:00",
+  "startPosition": "Central Park",
+  "name": "City thing",
+  "price": 100.0,
+  "category": "CITY",
+  "guideId": 1
+}
+
+###
+
+### Update a trip by ID
+PUT {{url}}/trips/1
+Content-Type: application/json
+
+{
+  "startTime": "2024-05-12T09:00:00",
+  "endTime": "2024-05-12T13:00:00",
+  "startPosition": "Updated Park",
+  "name": "Updated City Tour",
+  "price": 120.0,
+  "category": "CITY",
+  "guideId": 1
+}
+
+###
+
+### Delete a trip by ID
+DELETE {{url}}/trips/2
+
+###
+
+### Add a guide to a trip
+PUT {{url}}/trips/1/guides/1
+
+###
+
+### Get trips by guide ID
+GET {{url}}/trips/guide/1
+Accept: application/json
+
+
+
+### Test Get Total Price by Guide
+GET{{url}}/trips/guides/totalprice
+Accept: application/json
