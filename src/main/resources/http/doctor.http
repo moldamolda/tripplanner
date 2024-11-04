@@ -1,0 +1,57 @@
+> {%
+client.global.set("jwt_token", response.body.token);
+console.log("JWT Token:", client.global.get("jwt_token"));
+%}
+
+### Retrieve all doctors
+GET {{url}}/doctors
+Accept: application/json
+Authorization: Bearer {{jwt_token}}
+
+
+### Retrieve a doctor by ID
+# Replace {id} with a valid doctor ID (e.g., 1)
+GET{{url}}/doctors/234
+Accept: application/json
+
+### Retrieve doctors by speciality
+# Replace {speciality} with a valid speciality (e.g., FAMILY_MEDICINE, SURGERY)
+GET {{url}}/doctors/doctor/speciality/FAMILY_MEDICINE
+Accept: application/json
+
+### Retrieve doctors by birthdate range
+# Specify the date range as query parameters, in the format yyyy-MM-dd
+# Example: from=1975-01-01&to=1985-12-31
+GET {{url}}/doctors/doctor/birthdate/range?from=1975-01-01&to=1985-12-31
+Accept: application/json
+
+### Create a new doctor
+POST {{url}}/doctors
+Content-Type: application/json
+
+{
+  "name": "Dr. Sophie Turner",
+  "dateOfBirth": "1985-06-12",
+  "yearOfGraduation": 2012,
+  "nameOfClinic": "West End Clinic",
+  "speciality": "PSYCHIATRY"
+}
+
+### Update a doctor by ID
+# Replace {id} with a valid doctor ID (e.g., 1)
+PUT {{url}}/doctors/2
+Content-Type: application/json
+
+{
+  "name": "Dr. T",
+  "dateOfBirth": "1985-06-12",
+  "yearOfGraduation": 2122,
+  "nameOfClinic": "Clinic",
+  "speciality": "PSYCHIATRY"
+}
+
+
+### Delete a doctor by ID
+# Replace {id} with a valid doctor ID (e.g., 1)
+DELETE {{url}}/doctors/2
+
